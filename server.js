@@ -33,7 +33,6 @@ hbs.registerHelper('screamIt', (text) => {
 });
 
 app.get('/', (req, res) => {
-  // res.send('<h1>hello express!</h1>');
   res.render('home.hbs', {
     pageTitle: 'Home page',
     welcomeMessage: 'hello, node server client',
@@ -51,6 +50,7 @@ app.get('/bad', (req, res) => {
     errorMessage: "Oops something went wrong"
   });
 });
+
 app.listen(3000, () => {
   console.log('Server is up on port 3000');
 });
