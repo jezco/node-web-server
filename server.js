@@ -10,11 +10,12 @@ app.use((req, res, next) => {
   var now = new Date().toString();
   var log = `${now}: ${req.method} ${req.url}`;
   console.log(log);
+  /*
   fs.appendFile('server.log', log + '\n', (err) => {
     if (err) {
       console.log('unable to append file');
     }
-  })
+  })*/
   next();
 });
 
@@ -51,6 +52,12 @@ app.get('/bad', (req, res) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log('Server is up on port 3000');
-});
+if (module === require.main) {
+  // [START server]
+  // Start the server
+  const server = app.listen(process.env.PORT || 8080, () => {
+    const port = server.address().port;
+    console.log(`App listening on port ${port}`);
+  });
+  // [END server]
+}
